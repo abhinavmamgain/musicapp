@@ -4,6 +4,7 @@ import {ArtistsInfo} from "./../../Models/ArtistsInfo";
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { Button } from 'protractor';
+import {Config} from "./../../../config";
 
 @Component({
   selector: "tracks-root",
@@ -16,6 +17,7 @@ export class TracksComponent {
   artistInfo : ArtistsInfo;
   display:boolean;
 buttontext: string='Show';
+apikey: string=Config.SECRET_API_KEY;
   constructor (artistService: ArtistService)
   {
     this.artistService = artistService;
@@ -29,10 +31,10 @@ buttontext: string='Show';
 
   
     let url =
-      "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=abhistar8763&api_key=c18406b6eae9831de6ba5b6a102aad4b&format=json&page=1";
+      "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=abhistar8763&api_key=apikey&format=json&page=1";
 
     let url2 =
-      "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=abhistar8763&api_key=c18406b6eae9831de6ba5b6a102aad4b&format=json&page=2";
+      "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=abhistar8763&api_key=apikey&format=json&page=2";
 
     // // let [a, b] =  Promise.all([
     // //   fetch(url).then((value) => value.json()),
