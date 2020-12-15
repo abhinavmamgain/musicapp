@@ -1,0 +1,23 @@
+h1
+{
+    text-align: center;
+}
+h1:hover
+{
+animation: bigfade 5s;
+}
+@keyframes bigfade
+{
+from 
+{
+    opacity: 1;
+}
+to
+{
+    opacity: 0.5;
+}
+}
+html
+{
+    scroll-behavior: auto;
+}

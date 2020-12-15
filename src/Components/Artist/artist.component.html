@@ -1,0 +1,43 @@
+
+<div style="text-align: center;"> 
+  Top Artists
+  <div class="">
+    <div id="genid">
+      <ul></ul>
+      
+      
+      <table id="t" class="tableClass">
+        <thead id="thead">
+          <tr>
+            <th>
+              <a> Artist </a>
+            </th>
+            <th>
+              <a> Count </a>
+            </th>
+            
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let row of artistData; let i = index">
+            <tr>
+              <td><a href={{row.url}}> {{row.name}}</a>
+                </td>
+                <td >
+                  {{row.playcount}}
+                </td>
+              </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+
+    </div>
+    
+
+      </div>
+    </div> 
+
+
+   

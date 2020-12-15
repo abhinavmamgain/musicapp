@@ -1,0 +1,46 @@
+table, thead, tbody
+{
+    border: 1px;
+}
+
+.tableClass
+{
+border: 1px;
+
+}
+
+td:hover
+{
+    border:2px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    font-style: italic;
+    color: darkred;
+}
+thead
+{
+border: 2px solid black;
+    font-family: sans-serif;
+}
+
+td::first-letter
+{
+    font-size: 2rem;
+}
+
+td:hover
+{
+animation: bigfade 5s;
+}
+@keyframes bigfade
+{
+from 
+{
+    opacity: 1;
+}
+to
+{
+    opacity: 0.5;
+}
+}
+

@@ -1,0 +1,70 @@
+<!-- <script>
+for (var i = 0; i < ; i++) {
+      var newRow = document.getElementById("tbody").insertRow();
+      for (var j = 0; j < this.state.items[i].length - 2; j++) {
+        var cell1 = newRow.insertCell(j);
+        if (j == 0) {
+          const anchor = document.createElement("a");
+          anchor.text = this.state.items[i][j];
+          anchor.href = this.state.items[i][3];
+
+          cell1.appendChild(anchor);
+        } else if (j == 1) {
+          const anchor = document.createElement("a");
+          anchor.text = this.state.items[i][j];
+          anchor.href = this.state.items[i][4];
+
+          cell1.appendChild(anchor);
+        } else {
+          // Append a text node to the cell
+          var cell1Text = document.createTextNode(this.state.items[i][j]);
+          cell1.appendChild(cell1Text);
+        }
+      }
+    }
+</script> -->
+
+
+<div style="text-align: center;">
+  <div class="">
+    Recent Tracks
+    <button (click)="dreamOn()">
+      {{ buttontext }}
+      </button>
+    <div id="genid" *ngIf="display">
+      <ul></ul>
+      <table id="t" class="tableClass">
+        <thead id="thead">
+          <tr>
+            <th>
+              <a> Track </a>
+            </th>
+            <th>
+              <a> Artist </a>
+            </th>
+            <th>
+              <a> Album </a>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let row of tableData; let i = index">
+            <tr>
+              <ng-container *ngFor="let data of row; let j = index">
+                <td *ngIf="j==0 || j==1 || j==2">
+                  {{ data }}
+                </td>
+
+              </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="container">
+      <div class="pagination">
+
+      </div>
+    </div>
+   
