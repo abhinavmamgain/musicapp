@@ -18,6 +18,7 @@ export class TracksComponent {
   display:boolean;
 buttontext: string='Show';
 apikey: string=Config.SECRET_API_KEY;
+user:string=Config.USER;
   constructor (artistService: ArtistService)
   {
     this.artistService = artistService;
@@ -31,10 +32,9 @@ apikey: string=Config.SECRET_API_KEY;
 
   
     let url =
-      "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=abhistar8763&api_key=apikey&format=json&page=1";
+      'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+this.user+'&api_key='+this.apikey+'&format=json&page=1';
 
-    let url2 =
-      "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=abhistar8763&api_key=apikey&format=json&page=2";
+    
 
     // // let [a, b] =  Promise.all([
     // //   fetch(url).then((value) => value.json()),
