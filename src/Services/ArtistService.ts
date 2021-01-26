@@ -12,17 +12,18 @@ export class ArtistService
     allArtist: string;
     artists :ArtistsInfo;
     apikey: string;
-
+user:string;
     constructor()
     {
 
       this.apikey = Config.SECRET_API_KEY;
+      this.user = Config.USER;
     }
 
     async getArtist() : Promise<ArtistsInfo>
   {
     
-      let url = 'http://ws.audioscrobbler.com/2.0/?method=library.getartists&api_key='+this.apikey+'&user=abhistar8763&format=json';
+      let url = '//ws.audioscrobbler.com/2.0/?method=library.getartists&api_key='+this.apikey+'&user='+this.user+'&format=json';
     const fetchapi = fetch(url)
       .then((data) => data.json())
       

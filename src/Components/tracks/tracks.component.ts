@@ -32,7 +32,7 @@ user:string=Config.USER;
 
   
     let url =
-      'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+this.user+'&api_key='+this.apikey+'&format=json&page=1';
+      '//ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+this.user+'&api_key='+this.apikey+'&format=json&page=1';
 
     
 
