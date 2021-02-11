@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Convert, ArtistsInfo } from "./../Models/ArtistsInfo";
 import {Config} from "./../../config";
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable(
     {
@@ -13,38 +15,25 @@ export class ArtistService
     artists :ArtistsInfo;
     apikey: string;
 user:string;
-    constructor()
+    constructor(private readonly httpClient: HttpClient)
     {
 
       this.apikey = Config.SECRET_API_KEY;
       this.user = Config.USER;
     }
 
-    async getArtist() : Promise<ArtistsInfo>
+    getArtist() : Observable<any>
   {
+  
+      let URL = '//ws.audioscrobbler.com/2.0/?method=library.getartists&api_key='+this.apikey+'&user='+this.user+'&format=json';
+      return this.httpClient.get<any>(URL);
     
-      let url = '//ws.audioscrobbler.com/2.0/?method=library.getartists&api_key='+this.apikey+'&user='+this.user+'&format=json';
-    const fetchapi = fetch(url)
-      .then((data) => data.json())
-      
-      let allArtists = await fetchapi;
-     this.artists = Convert.toArtistsInfo(allArtists);
-     
-
-     var a = new Set();
-     a.add(1);
-     a.add(2);
-     a.add(3);
-     
-
-     a.forEach(logSetElements)
-
-     function logSetElements(value1, value2, set) {
-      console.log('s[' + value1 + '] = ' + value2);
   }
      
-return this.artists;
-  }
+
+     
+
+  
 }
 
 

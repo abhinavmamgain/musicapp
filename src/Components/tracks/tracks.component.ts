@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import {ArtistService} from "./../../Services/ArtistService";
 import {ArtistsInfo} from "./../../Models/ArtistsInfo";
-import { CommonModule } from '@angular/common';  
+import { CommonModule, NumberFormatStyle } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { Button } from 'protractor';
 import {Config} from "./../../../config";
@@ -19,10 +19,14 @@ export class TracksComponent {
 buttontext: string='Show';
 apikey: string=Config.SECRET_API_KEY;
 user:string=Config.USER;
+totalCount: number;
+showLoader = false;
+fetchapi1:any;
+fetchapi:any;
   constructor (artistService: ArtistService)
   {
     this.artistService = artistService;
-    this.display = false;
+    this.display = true;
   }
   tableData: string[] = [];
 
@@ -30,6 +34,10 @@ user:string=Config.USER;
 
   async ngOnInit() {
 
+    if(this.display==true)
+    this.buttontext = 'Hide';
+    else
+    this.buttontext = 'Show';
   
     let url =
       '//ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+this.user+'&api_key='+this.apikey+'&format=json&page=1';
@@ -47,23 +55,35 @@ user:string=Config.USER;
     //     return err;
     //   });
 
-   
 
-
-    const fetchapi = fetch(url)
+    this.fetchapi1 = () => {let a =fetch(url)
       .then((data) => data.json())
       .then((jsonData) => {
-        return jsonData.recenttracks.track;
+        this.totalCount =  jsonData.recenttracks["@attr"].total;
+        console.log(this.totalCount, 'check')
       });
+    }
 
-      
-    const apis = fetchapi.then((data) => {
-      let itemData = data.map(getFullTable);
-      return itemData;
-    });
+    this.fetchapi1();
 
-    this.tableData = await apis;
-console.log(this.tableData);
+    // this.fetchapi= () => {let a =fetch(url)
+    //   .then((data) => data.json())
+    //   .then((jsonData) => {
+    //     this.totalCount =  jsonData.recenttracks.track;
+    //     console.log(this.totalCount, 'check')
+    //   });
+    // }
+       this.fetchapi = () => {this.showLoader=true;
+         fetch(url)
+      .then((data) => { return data.json()})
+      .then((jsonData) => {
+        this.tableData = jsonData.recenttracks.track.map(getFullTable)
+      });
+      this.showLoader=false;
+    }
+  
+
+  this.fetchapi();
     // const fetchapi2 = fetch(url2)
     //   .then((data) => data.json())
     //   .then((jsonData) => {
@@ -92,8 +112,7 @@ console.log(this.tableData);
       return fullTable;
     }
 
-    this.artistInfo =   await this.artistService.getArtist();
-    console.log(this.artistInfo.artists.artist.length);
+
     // this.tableData = await apidata;
     // this.tableData2 = await apidata2;
     // this.tableData = this.tableData.concat(this.tableData2);
@@ -101,12 +120,7 @@ console.log(this.tableData);
 
   dreamOn()
   {
-
     this.display=!this.display;
-    // if(this.display)
-    // this.buttontext = 'Hide'
-    // else
-    // this.buttontext = 'Show'
     if(this.display==true)
     this.buttontext = 'Hide';
     else

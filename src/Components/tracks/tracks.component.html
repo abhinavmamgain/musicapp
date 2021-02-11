@@ -27,13 +27,20 @@ for (var i = 0; i < ; i++) {
 
 <div style="text-align: center;">
   <div class="">
-    Recent Tracks
-    <button (click)="dreamOn()">
+    Recent Tracks - {{ totalCount }}
+   
+    <button class="btn btn-primary" routerLink="/artists">
+      Artists
+      </button>
+    <button class="btn btn-secondary" style="margin-left:2px;" (click)="dreamOn()">
       {{ buttontext }}
       </button>
+      <div *ngIf="showLoader" class="mt-5 text-center">
+        <img src="https://chickenrecipeseasy.top/images/loader.gif"/>
+     </div>
     <div id="genid" *ngIf="display">
       <ul></ul>
-      <table id="t" class="tableClass">
+      <table id="t" class="table table-bordered table-striped tableClass">
         <thead id="thead">
           <tr>
             <th>

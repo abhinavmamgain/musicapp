@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import {ArtistService} from "./../../Services/ArtistService";
 import {Artist, ArtistsInfo} from "./../../Models/ArtistsInfo";
-
+import { from, Observable } from 'rxjs';
 
 @Component({
   selector: "artist-root",
@@ -13,6 +13,7 @@ export class ArtistComponent {
   artistService : ArtistService;
   artistInfo : ArtistsInfo;
  artistData : Artist[];
+ showLoader=false;
   constructor (artistService: ArtistService)
   {
     this.artistService = artistService;
@@ -21,12 +22,18 @@ export class ArtistComponent {
 
   tableData2: string[] = [];
 
-  async ngOnInit() {
+   ngOnInit() {
 
   
-    this.artistInfo =   await this.artistService.getArtist();
-    console.log(this.artistInfo.artists.artist);
-    this.artistData = this.artistInfo.artists.artist;
+     this.artistService.getArtist().subscribe((data) =>
+      {
+        this.showLoader = true;
+        this.artistData = data.artists.artist;
+        console.log(data);
+        this.showLoader = false;
+      }
+    );
+    
     // this.tableData = await apidata;
     // this.tableData2 = await apidata2;
     // this.tableData = this.tableData.concat(this.tableData2);

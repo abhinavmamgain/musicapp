@@ -1,12 +1,9 @@
 table, thead, tbody
 {
-    border: 1px;
 }
 
 .tableClass
 {
-border: 1px;
-
 }
 
 td:hover
@@ -18,9 +15,7 @@ td:hover
     color: darkred;
 }
 thead
-{
-border: 2px solid black;
-    font-family: sans-serif;
+{    font-family: sans-serif;
 }
 
 td::first-letter

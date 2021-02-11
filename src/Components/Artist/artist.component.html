@@ -6,7 +6,9 @@
       <ul></ul>
       
       
-      <table id="t" class="tableClass">
+     
+
+      <table id="t" class="table table-bordered table-striped  tableClass">
         <thead id="thead">
           <tr>
             <th>
@@ -15,11 +17,14 @@
             <th>
               <a> Count </a>
             </th>
-            
+          
           </tr>
         </thead>
 
         <tbody>
+          <div *ngIf="showLoader" class="mt-5 text-center">
+            <img src="https://chickenrecipeseasy.top/images/loader.gif"/>
+         </div>
           <ng-container *ngFor="let row of artistData; let i = index">
             <tr>
               <td><a href={{row.url}}> {{row.name}}</a>
@@ -31,8 +36,7 @@
           </ng-container>
         </tbody>
       </table>
-
-
+     
     </div>
     
 
